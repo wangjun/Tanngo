@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/word_question_fragment"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="word"
+        android:id="@+id/answer_word_text"
+        android:padding="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kana"
+        android:id="@+id/answer_kana_text"
+        android:padding="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="defi"
+        android:id="@+id/answer_definition_text"
+        android:padding="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ex sentence"
+        android:id="@+id/answer_example_sentence_text"
+        android:padding="16dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下一个单词"
+        android:id="@+id/next_word_btn"
+        android:padding="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正确"
+        android:id="@+id/is_answer_correct_text"
+        />
+
+</LinearLayout>

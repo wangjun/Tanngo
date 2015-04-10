@@ -1,0 +1,7 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container_in_word_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.ezio.org.tanngo.WordActivity"
+        tools:ignore="MergeRootFrame" />
