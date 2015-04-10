@@ -25,7 +25,7 @@ public class WordsDbHelper extends SQLiteOpenHelper{
         //为什么给word unique 就会报错呢？
         final String SQL_CREATE_WORDS_TABLE= "CREATE TABLE "+ WordsEntry.TABLE_NAME+"("+
                 WordsEntry._ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                WordsEntry.COLUMN_WORD+" TEXT,"+
+                WordsEntry.COLUMN_WORD+" TEXT UNIQUE NOT NULL,"+
                 WordsEntry.COLUMN_KANA+" TEXT DEFAULT ' ',"+
                 WordsEntry.COLUMN_DEFINITION+" TEXT NOT NULL,"+
                 WordsEntry.COLUMN_EXAMPLE_SENTENCE+" TEXT DEFAULT ' ',"+

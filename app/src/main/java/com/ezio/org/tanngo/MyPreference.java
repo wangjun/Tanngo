@@ -8,6 +8,7 @@ import android.text.format.Time;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
 
 /**
@@ -102,19 +103,26 @@ public class MyPreference {
 
     }
 
-    //获取离完成还有多少单词，这个需要查询数据库，需要table name传入，同一时间只有一个值，与单词书对应
-    public int getRemainingWordsNum(){
+    //TODO:获取总词数
+    public int getWordsNumTotal(){
+        return 999;
+    }
+
+    //获取离完成还有多少单词，这个需要查询数据库，同一时间只有一个值，与单词书对应
+    public int getRemainingWordsNumTotal(){
         Log.d(Utility.LOG_TAG,"getWordsNum-----");
+
+        if (getDictName()==null){
+            return 0;
+        }
         WordsDbHelper mDbHelper = new WordsDbHelper(mContext);
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        String[] projection = {
-                "COUNT(WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT)"
-        };
-
         //TODO:改写这个sql
 
-        Cursor cursor = db.rawQuery("SELECT COUNT(continuous_right) FROM words_table WHERE continuous_right < 7",null);
+        Cursor cursor = db.rawQuery("SELECT COUNT("+ WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT
+                +") FROM "+ getDictName() +
+                " WHERE "+ WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT+" < 7",null);
 
         Log.d(Utility.LOG_TAG,"getWordsNum-----1");
         cursor.moveToFirst();
@@ -131,7 +139,7 @@ public class MyPreference {
 
     //由天数还有单词书得到每天平均要背多少，这个值应该是每天每个单词书有一个，一天内多次切换暂不考虑存储
     //每次都用重新查询来覆盖
-    public int getWordsNumEachDay(){
+    private int getWordsNumEachDay(){
         //getRemainingTime()
                 //先要从database那边获得还没背的单词的数量
                 //然后与剩下的天数相除
@@ -142,8 +150,12 @@ public class MyPreference {
         //TODO:3.以这个决定今天还需要背多少单词，存储在perf中，然后背完一个就递减一个
         //TODO:4.那么这样总的单词数要乘以7
 
-        int wordsNumEachDay = getRemainingWordsNum()*7/getRemainingDay();
-        int remainderNum = getRemainingWordsNum()*7%getRemainingDay();
+        if (getRemainingWordsNumTotal()==0||getRemainingDay()==0){
+            return 0;
+        }
+
+        int wordsNumEachDay = getRemainingWordsNumTotal()*7/getRemainingDay();
+        int remainderNum = getRemainingWordsNumTotal()*7%getRemainingDay();
 
 
         //b
@@ -183,29 +195,41 @@ public class MyPreference {
         //如果运行过，从日志中取得需要背的数量
         //因为这个是今天还剩的单词数，是会随着用户的背诵而变化的，所以还有个set方法
 
+        if (getDictName()==null){
+            return 0;
+        }
+
         SharedPreferences dailySP = mContext.getSharedPreferences(getDictName(),Context.MODE_PRIVATE);
         int todayWordsRemaining = dailySP.getInt(currentJulianDay+"",today_havent_run);
         if (todayWordsRemaining==today_havent_run){
             SharedPreferences.Editor editor = dailySP.edit();
-            editor.putInt(currentJulianDay+"",getTodayWordsTotalNum());
+            editor.putInt(currentJulianDay+"", getTodayWordsNumTotal());
             editor.apply();
-            return getTodayWordsTotalNum();
+            return getTodayWordsNumTotal();
         }else {
             return todayWordsRemaining;
         }
     }
 
     public void setTodayWordsRemaining(int wordsNum){
-        SharedPreferences dailySP = mContext.getSharedPreferences(getDictName(),Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = dailySP.edit();
-        editor.putInt(currentJulianDay+"",wordsNum);
-        editor.apply();
+        if (getDictName()!=null){
+            SharedPreferences dailySP = mContext.getSharedPreferences(getDictName(),Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = dailySP.edit();
+            editor.putInt(currentJulianDay+"",wordsNum);
+            editor.apply();
+        }
+
+
     }
 
     //因为如果在背诵过程中改database的话，每天需要背的单词数可能会变动，
     // 所以不能依靠getWordsNumEach来获得今天要背词的总数，有必要用一个一天内不会变动的数来存储
     //类似于get/setTodayWordsRemaining,但是因为外部不需要set的功能，所以不提供，每天初始化已经在get中做了
-    public int getTodayWordsTotalNum(){
+    public int getTodayWordsNumTotal(){
+        if (getDictName()==null){
+            return 0;
+        }
+
         SharedPreferences dailyTotalSP = mContext.getSharedPreferences(
                 getDictName()+TOTAL_TAG,Context.MODE_PRIVATE);
         int todayWordsTotal = dailyTotalSP.getInt(currentJulianDay+TOTAL_TAG,today_havent_run);

@@ -17,6 +17,7 @@ public class WordsContract {
 
         //placeholder table name
         //think about how to distinguish different users' same words book
+        //can't be used in real
         public static final String TABLE_NAME = "words_table";
 
         //cannot be null,text

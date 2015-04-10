@@ -40,7 +40,7 @@ public class SelectWordsBookActivity extends ActionBarActivity {
 
                 //test code
                 MyPreference pref = new MyPreference(mContext);
-                pref.getRemainingWordsNum();
+                pref.getRemainingWordsNumTotal();
             }
         });
     }

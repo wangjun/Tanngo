@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -71,7 +72,7 @@ public class WordActivity extends Activity implements
 
         //get the words book's name , use it as table name to query from database
         String dictName = myPref.getDictName();
-        todayWordsNum = myPref.getTodayWordsTotalNum();
+        todayWordsNum = myPref.getTodayWordsNumTotal();
 
         queryWordsInfo(dictName);
 
@@ -163,7 +164,7 @@ public class WordActivity extends Activity implements
         Cursor cursor = db.rawQuery("SELECT "+ projection +
                                 " FROM "+dictName+
                                 " ORDER BY "+sortOrder+
-                                " LIMIT "+todayWordsNum ,null);
+                                " LIMIT "+todayWordsNum +";",null);
 
 
 
@@ -191,6 +192,8 @@ public class WordActivity extends Activity implements
 
 
 
+    //在用户选择了答案之后，判断答案是否正确，并将其传递给下面的AnswerFragment
+    //同时更新数据库中Word的信息
     @Override
     public void onDefiBtnSelected(View v,Button rightBTN) {
 
@@ -201,6 +204,41 @@ public class WordActivity extends Activity implements
         Boolean isRight = (v.getId()==rightBTN.getId());
         bundle.putBoolean(IS_SELECT_RIGHT_KEY,isRight);
         getFragmentPage(bundle);
+
+        WordsDbHelper mDbHelper = new WordsDbHelper(getApplicationContext());
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        //update database
+        if (isRight){
+            //let now word's continuous right times plus 1
+            db.execSQL("UPDATE "+myPref.getDictName()+
+                    " SET "+ WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT+" = "
+                    + WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT+"+1 WHERE "
+                    + WordsContract.WordsEntry.COLUMN_WORD+" = '"
+                    + wordsList[nowWordIndex]+"';");
+
+        }else {
+            //let now word's continuous right times be 0, and wrong times plus 1
+            db.execSQL("UPDATE "+myPref.getDictName()+
+                    " SET "+ WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT+" = 0, "
+                    + WordsContract.WordsEntry.COLUMN_WRONG_TIMES+" = "
+                    + WordsContract.WordsEntry.COLUMN_WRONG_TIMES+" +1 WHERE "
+                    + WordsContract.WordsEntry.COLUMN_WORD+" = '"
+                    + wordsList[nowWordIndex]+"';");
+        }
+
+        //test code
+        Cursor cursor = db.rawQuery("SELECT "+ WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT+
+                ", "+ WordsContract.WordsEntry.COLUMN_WRONG_TIMES+
+                " FROM "+myPref.getDictName()+" WHERE "+
+                WordsContract.WordsEntry.COLUMN_WORD+" = '"+
+                wordsList[nowWordIndex]+"';",null);
+        if (cursor.moveToFirst()){
+            int cr = cursor.getInt(cursor.getColumnIndexOrThrow(WordsContract.WordsEntry.COLUMN_CONTINUOUS_RIGHT));
+            int wt = cursor.getInt(cursor.getColumnIndexOrThrow(WordsContract.WordsEntry.COLUMN_WRONG_TIMES));
+            Log.d(Utility.LOG_TAG,"Word-->"+wordsList[nowWordIndex]+";CONTINUOUS_RIGHT--->"+cr+";WRONG_TIMES--->"+wt);
+            cursor.close();
+        }
+
     }
 
     @Override
