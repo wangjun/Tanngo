@@ -1,6 +1,5 @@
 package com.ezio.org.tanngo.ui;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.database.Cursor;
@@ -10,17 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.R;
-import com.ezio.org.tanngo.utils.Utility;
 import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
+import com.ezio.org.tanngo.utils.Utility;
 
 import java.util.HashSet;
 import java.util.Iterator;
 
 
-public class WordActivity extends Activity implements
+public class WordActivity extends BaseActivity implements
         WordQuestionFragment.OnAnswerSelectedListener,
         WordAnswerFragment.OnNextWordBtnSelectedListener {
 
@@ -63,26 +61,40 @@ public class WordActivity extends Activity implements
     public final static String IS_SELECT_RIGHT_KEY = "is_select_right_key";
 
 
-    private MyPreference myPref;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_word);
 
-        myPref = new MyPreference(getApplicationContext());
+    }
+
+    @Override
+    public void setContentView() {
+        setContentView(R.layout.activity_word);
+    }
+
+    @Override
+    public void initViews() {
+        //get the content
+        Bundle bundle = new Bundle();
+        getFragmentPage(bundle);
+    }
+
+    @Override
+    public void initListeners() {
+
+    }
+
+    @Override
+    public void initData() {
 
         //get the words book's name , use it as table name to query from database
         String dictName = myPref.getDictName();
         todayWordsNum = myPref.getTodayWordsNumTotal();
 
         queryWordsInfo(dictName);
-
-        //get the content
-        Bundle bundle = new Bundle();
-        getFragmentPage(bundle);
-
     }
 
     //判断下一个要填充的fragment类型,将需要显示的东西作为参数传进去,给fragment处理

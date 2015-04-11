@@ -45,7 +45,7 @@ public class WordAnswerFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_word_answer, container, false);
 
-        initialView(rootView);
+        initView(rootView);
 
         Bundle args = getArguments();
         isCorrect = args.getBoolean(WordActivity.IS_SELECT_RIGHT_KEY);
@@ -78,7 +78,7 @@ public class WordAnswerFragment extends Fragment {
         }
     }
 
-    private void initialView(View rootView) {
+    private void initView(View rootView) {
         wordText = (TextView) rootView.findViewById(R.id.answer_word_text);
         kanaText = (TextView) rootView.findViewById(R.id.answer_kana_text);
         defiText = (TextView) rootView.findViewById(R.id.answer_definition_text);

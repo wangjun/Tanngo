@@ -1,6 +1,5 @@
 package com.ezio.org.tanngo.ui;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,54 +9,59 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.R;
 
 
-public class ChangePlanActivity extends Activity implements View.OnClickListener {
+public class ChangePlanActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mPickWordsBookBTN;
     private Button mPickDeadlineBTN;
     private TextView mDateDisplay;
 
-    static final int DATE_DIALOG_ID = 0;
+    public static final int DATE_DIALOG_ID = 0;
 
     private int mYear;
     private int mMonth;
     private int mDay;
 
-    MyPreference pref;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        updateDisplay();
+
+    }
+
+    @Override
+    public void setContentView() {
         setContentView(R.layout.activity_change_plan);
+    }
+
+    @Override
+    public void initViews() {
 
         mPickWordsBookBTN = (Button) findViewById(R.id.pick_words_book_button);
         mPickDeadlineBTN = (Button) findViewById(R.id.pick_deadline_button);
 
+        mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
+    }
+
+    @Override
+    public void initListeners() {
+
         mPickWordsBookBTN.setOnClickListener(this);
         mPickDeadlineBTN.setOnClickListener(this);
+    }
 
+    @Override
+    public void initData() {
 
-        mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
-
-
-        pref = new MyPreference(this);
-        mYear = pref.getDeadlineYear();
-        mMonth = pref.getDeadlineMonth();
-        mDay = pref.getDeadlineDay();
-
-
-//        final Calendar c = Calendar.getInstance();
-//        mYear = c.get(Calendar.YEAR);
-//        mMonth = c.get(Calendar.MONTH);
-//        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-
-        updateDisplay();
-
+        mYear = myPref.getDeadlineYear();
+        mMonth = myPref.getDeadlineMonth();
+        mDay = myPref.getDeadlineDay();
     }
 
 
@@ -96,7 +100,7 @@ public class ChangePlanActivity extends Activity implements View.OnClickListener
                         // Month is 0 based so add 1
                         .append(mMonth + 1).append("-")
                         .append(mDay).append("-")
-                        .append(mYear).append(" "));
+                        .append(mYear).append(""));
 
     }
 
@@ -108,9 +112,9 @@ public class ChangePlanActivity extends Activity implements View.OnClickListener
                     mYear = year;
                     mMonth = monthOfYear;
                     mDay = dayOfMonth;
-                    pref.setDeadlineDay(mDay);
-                    pref.setDeadlineMonth(mMonth);
-                    pref.setDeadlineYear(mYear);
+                    myPref.setDeadlineDay(mDay);
+                    myPref.setDeadlineMonth(mMonth);
+                    myPref.setDeadlineYear(mYear);
                     updateDisplay();
                 }
             };

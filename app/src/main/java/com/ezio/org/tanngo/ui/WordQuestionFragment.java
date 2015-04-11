@@ -49,17 +49,17 @@ public class WordQuestionFragment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_word_question, container, false);
 
-        initialView();
+        initViews();
 
         setTextToView();
 
-        setListenerToBtn();
+        initListeners();
 
 
         return rootView;
     }
 
-    private void initialView() {
+    private void initViews() {
         wordText = (TextView) rootView.findViewById(R.id.word_text);
         kanaText = (TextView) rootView.findViewById(R.id.kana_text);
         exSentenceText = (TextView) rootView.findViewById(R.id.example_sentence_text);
@@ -96,7 +96,7 @@ public class WordQuestionFragment extends Fragment implements View.OnClickListen
         }
     }
 
-    private void setListenerToBtn() {
+    private void initListeners() {
         defiBTN_1.setOnClickListener(this);
         defiBTN_2.setOnClickListener(this);
         defiBTN_3.setOnClickListener(this);

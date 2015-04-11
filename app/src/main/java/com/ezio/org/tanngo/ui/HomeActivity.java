@@ -1,26 +1,17 @@
 package com.ezio.org.tanngo.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.R;
-import com.ezio.org.tanngo.utils.Utility;
-
-import cn.bmob.v3.Bmob;
 
 
-public class HomeActivity extends Activity {
-
-
-    private final static String BMOB_APP_ID = "9118cc097159952e26caf5c9b535006e";
+public class HomeActivity extends BaseActivity {
 
     //initial view
     //private Button mWordsListBTN;
@@ -35,26 +26,45 @@ public class HomeActivity extends Activity {
     private TextView mAlreadyDoneWordsToday;
     private TextView mWordsToday;
 
-    MyPreference myPref;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
+    public void setContentView() {
         setContentView(R.layout.activity_home);
+    }
 
-        initialize();
+    @Override
+    public void initViews() {
 
+        //button
+        //mWordsListBTN = (Button)findViewById(R.id.words_list_BTN);
 
-        //test code
-        String dictName = myPref.getDictName();
-        if (dictName == null) {
-            Log.d(Utility.LOG_TAG, "dictName is null");
-        } else {
-            Log.d(Utility.LOG_TAG, "I dont know dictName is what");
-        }
+        mStartBackWordsBTN = (Button) findViewById(R.id.start_back_words_BTN);
 
+        //textView
+        mWordsEachday = (TextView) findViewById(R.id.words_eachday);
+        mRemainingDay = (TextView) findViewById(R.id.remaining_day);
+        mAlreadyDoneWordsTotal = (TextView) findViewById(R.id.already_done_words_total);
+        mWordsTotal = (TextView) findViewById(R.id.words_total);
+        mAlreadyDoneWordsToday = (TextView) findViewById(R.id.already_done_words_today);
+        mWordsToday = (TextView) findViewById(R.id.words_today);
+    }
 
+    @Override
+    public void initListeners() {
+
+    }
+
+    @Override
+    public void initData() {
 
 
     }
@@ -90,6 +100,8 @@ public class HomeActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        //update HomeActivity's view texts' information
+        //doing it in onResume is for add some animation later
         mWordsEachday.setText(myPref.getTodayWordsNumTotal() + "");
         mRemainingDay.setText(myPref.getRemainingDay() + "");
 
@@ -104,28 +116,7 @@ public class HomeActivity extends Activity {
 
     }
 
-    private void initialize() {
 
-        //initial Bmob SDK
-        Bmob.initialize(this, BMOB_APP_ID);
-
-
-        //button
-        //mWordsListBTN = (Button)findViewById(R.id.words_list_BTN);
-
-        mStartBackWordsBTN = (Button) findViewById(R.id.start_back_words_BTN);
-
-        //textView
-        mWordsEachday = (TextView) findViewById(R.id.words_eachday);
-        mRemainingDay = (TextView) findViewById(R.id.remaining_day);
-        mAlreadyDoneWordsTotal = (TextView) findViewById(R.id.already_done_words_total);
-        mWordsTotal = (TextView) findViewById(R.id.words_total);
-        mAlreadyDoneWordsToday = (TextView) findViewById(R.id.already_done_words_today);
-        mWordsToday = (TextView) findViewById(R.id.words_today);
-
-        //SharedPreference
-        myPref = new MyPreference(getApplicationContext());
-    }
 
 
 
