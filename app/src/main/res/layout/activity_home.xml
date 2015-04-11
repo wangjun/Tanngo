@@ -145,17 +145,7 @@
 
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp"
-        android:paddingTop="16dp"
-        android:text="修改计划"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:id="@+id/change_plan_BTN"
-        />
 
     <Button
         android:layout_width="wrap_content"

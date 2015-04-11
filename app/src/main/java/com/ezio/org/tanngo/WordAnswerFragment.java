@@ -32,7 +32,6 @@ public class WordAnswerFragment extends Fragment {
     private Boolean isCorrect;
 
 
-
     public WordAnswerFragment() {
         super();
     }
@@ -78,12 +77,12 @@ public class WordAnswerFragment extends Fragment {
     }
 
     private void initialView(View rootView) {
-        wordText = (TextView)rootView.findViewById(R.id.answer_word_text);
-        kanaText = (TextView)rootView.findViewById(R.id.answer_kana_text);
-        defiText = (TextView)rootView.findViewById(R.id.answer_definition_text);
-        exSentenceText = (TextView)rootView.findViewById(R.id.answer_example_sentence_text);
-        isCorrectText = (TextView)rootView.findViewById(R.id.is_answer_correct_text);
-        nextWordBTN = (Button)rootView.findViewById(R.id.next_word_btn);
+        wordText = (TextView) rootView.findViewById(R.id.answer_word_text);
+        kanaText = (TextView) rootView.findViewById(R.id.answer_kana_text);
+        defiText = (TextView) rootView.findViewById(R.id.answer_definition_text);
+        exSentenceText = (TextView) rootView.findViewById(R.id.answer_example_sentence_text);
+        isCorrectText = (TextView) rootView.findViewById(R.id.is_answer_correct_text);
+        nextWordBTN = (Button) rootView.findViewById(R.id.next_word_btn);
 
     }
 
@@ -93,14 +92,14 @@ public class WordAnswerFragment extends Fragment {
         kanaText.setText(args.getString(WordActivity.KANA_KEY));
         defiText.setText(args.getString(WordActivity.DEFI_KEY));
         exSentenceText.setText(args.getString(WordActivity.EXSE_KEY));
-        if (isCorrect){
+        if (isCorrect) {
             isCorrectText.setText("正确！");
-        }else {
+        } else {
             isCorrectText.setText("错误！");
         }
     }
 
-    public interface OnNextWordBtnSelectedListener{
+    public interface OnNextWordBtnSelectedListener {
         public void onNextWordBtnSelected(Boolean isCorrect);
     }
 

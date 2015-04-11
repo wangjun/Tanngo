@@ -1,8 +1,8 @@
 package com.ezio.org.tanngo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,14 +13,14 @@ import android.widget.TextView;
 import cn.bmob.v3.Bmob;
 
 
-public class HomeActivity extends ActionBarActivity{
+public class HomeActivity extends Activity {
 
 
-    private final static String BMOB_APP_ID ="9118cc097159952e26caf5c9b535006e";
+    private final static String BMOB_APP_ID = "9118cc097159952e26caf5c9b535006e";
 
     //initial view
     //private Button mWordsListBTN;
-    private Button mChangePlanBTN;
+
     private Button mStartBackWordsBTN;
 
     //be sure mWordsEachday's text same as mWordsToday, mWordsEachday don't use really each day data
@@ -34,7 +34,6 @@ public class HomeActivity extends ActionBarActivity{
     MyPreference myPref;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +43,11 @@ public class HomeActivity extends ActionBarActivity{
 
         //test code
         String dictName = myPref.getDictName();
-        if (dictName==null){
+        if (dictName == null) {
             Log.d(Utility.LOG_TAG, "dictName is null");
-        }else {
-            Log.d(Utility.LOG_TAG,"I dont know dictName is what");
+        } else {
+            Log.d(Utility.LOG_TAG, "I dont know dictName is what");
         }
-
-        setListenerToBtn();
-
 
 
 
@@ -63,21 +59,21 @@ public class HomeActivity extends ActionBarActivity{
         super.onStart();
 
         //if these is no dict , then make the "start back " button as "choose dict button"
-        if (myPref.getDictName()==null||myPref.getTodayWordsNumTotal()==0){
+        if (myPref.getDictName() == null || myPref.getTodayWordsNumTotal() == 0) {
             mStartBackWordsBTN.setText("选择单词书");
             mStartBackWordsBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(HomeActivity.this,ChangePlanActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, ChangePlanActivity.class);
                     startActivity(intent);
                 }
             });
-        }else {
+        } else {
             mStartBackWordsBTN.setText("开始背单词");
             mStartBackWordsBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(HomeActivity.this,WordActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, WordActivity.class);
                     startActivity(intent);
                 }
             });
@@ -89,17 +85,16 @@ public class HomeActivity extends ActionBarActivity{
     protected void onResume() {
         super.onResume();
 
-        mWordsEachday.setText(myPref.getTodayWordsNumTotal()+"");
-        mRemainingDay.setText(myPref.getRemainingDay()+"");
+        mWordsEachday.setText(myPref.getTodayWordsNumTotal() + "");
+        mRemainingDay.setText(myPref.getRemainingDay() + "");
 
 
+        mAlreadyDoneWordsTotal.setText((myPref.getWordsNumTotal() - myPref.getRemainingWordsNumTotal()) + "");
+        mWordsTotal.setText(myPref.getWordsNumTotal() + "");
 
-        mAlreadyDoneWordsTotal.setText((myPref.getWordsNumTotal()-myPref.getRemainingWordsNumTotal())+"");
-        mWordsTotal.setText(myPref.getWordsNumTotal()+"");
 
-
-        mAlreadyDoneWordsToday.setText((myPref.getTodayWordsNumTotal()-myPref.getTodayWordsRemaining())+"");
-        mWordsToday.setText(myPref.getTodayWordsNumTotal()+"");
+        mAlreadyDoneWordsToday.setText((myPref.getTodayWordsNumTotal() - myPref.getTodayWordsRemaining()) + "");
+        mWordsToday.setText(myPref.getTodayWordsNumTotal() + "");
 
 
     }
@@ -107,42 +102,27 @@ public class HomeActivity extends ActionBarActivity{
     private void initialize() {
 
         //initial Bmob SDK
-        Bmob.initialize(this,BMOB_APP_ID);
+        Bmob.initialize(this, BMOB_APP_ID);
 
 
         //button
         //mWordsListBTN = (Button)findViewById(R.id.words_list_BTN);
-        mChangePlanBTN = (Button)findViewById(R.id.change_plan_BTN);
-        mStartBackWordsBTN=(Button)findViewById(R.id.start_back_words_BTN);
+
+        mStartBackWordsBTN = (Button) findViewById(R.id.start_back_words_BTN);
 
         //textView
-        mWordsEachday = (TextView)findViewById(R.id.words_eachday);
-        mRemainingDay = (TextView)findViewById(R.id.remaining_day);
-        mAlreadyDoneWordsTotal = (TextView)findViewById(R.id.already_done_words_total);
-        mWordsTotal = (TextView)findViewById(R.id.words_total);
-        mAlreadyDoneWordsToday = (TextView)findViewById(R.id.already_done_words_today);
-        mWordsToday = (TextView)findViewById(R.id.words_today);
+        mWordsEachday = (TextView) findViewById(R.id.words_eachday);
+        mRemainingDay = (TextView) findViewById(R.id.remaining_day);
+        mAlreadyDoneWordsTotal = (TextView) findViewById(R.id.already_done_words_total);
+        mWordsTotal = (TextView) findViewById(R.id.words_total);
+        mAlreadyDoneWordsToday = (TextView) findViewById(R.id.already_done_words_today);
+        mWordsToday = (TextView) findViewById(R.id.words_today);
 
         //SharedPreference
         myPref = new MyPreference(getApplicationContext());
     }
 
-    private void setListenerToBtn() {
 
-
-        mChangePlanBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //How to get outer class's field? use outerClassName.property
-                Intent intent = new Intent(HomeActivity.this,ChangePlanActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-    }
 
 
     @Override
@@ -161,6 +141,10 @@ public class HomeActivity extends ActionBarActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }else if (id == R.id.change_plan_menu_item){
+            Intent intent = new Intent(HomeActivity.this, ChangePlanActivity.class);
+            startActivity(intent);
             return true;
         }
 

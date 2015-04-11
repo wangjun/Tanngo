@@ -1,17 +1,17 @@
 package com.ezio.org.tanngo;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 
-public class ChangePlanActivity extends ActionBarActivity implements View.OnClickListener{
+public class ChangePlanActivity extends Activity implements View.OnClickListener {
 
     private Button mPickWordsBookBTN;
     private Button mPickDeadlineBTN;
@@ -26,22 +26,19 @@ public class ChangePlanActivity extends ActionBarActivity implements View.OnClic
     MyPreference pref;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_plan);
 
-        mPickWordsBookBTN = (Button)findViewById(R.id.pick_words_book_button);
-        mPickDeadlineBTN=(Button)findViewById(R.id.pick_deadline_button);
+        mPickWordsBookBTN = (Button) findViewById(R.id.pick_words_book_button);
+        mPickDeadlineBTN = (Button) findViewById(R.id.pick_deadline_button);
 
         mPickWordsBookBTN.setOnClickListener(this);
         mPickDeadlineBTN.setOnClickListener(this);
 
 
         mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
-
 
 
         pref = new MyPreference(this);
@@ -61,35 +58,31 @@ public class ChangePlanActivity extends ActionBarActivity implements View.OnClic
     }
 
 
-
-
-
     @Override
     public void onClick(View v) {
-        if (v==mPickWordsBookBTN){
-            Intent intent = new Intent(this,SelectWordsBookActivity.class);
+        if (v == mPickWordsBookBTN) {
+            Intent intent = new Intent(this, SelectWordsBookActivity.class);
             startActivity(intent);
-        }else if(v==mPickDeadlineBTN){
+        } else if (v == mPickDeadlineBTN) {
             showDialog(DATE_DIALOG_ID);
         }
     }
 
 
-
     @Override
     protected Dialog onCreateDialog(int id) {
-        if (id==DATE_DIALOG_ID) {
-                return new DatePickerDialog(this,
-                        mDateSetListener,
-                        mYear, mMonth, mDay);
+        if (id == DATE_DIALOG_ID) {
+            return new DatePickerDialog(this,
+                    mDateSetListener,
+                    mYear, mMonth, mDay);
         }
         return null;
     }
 
     @Override
     protected void onPrepareDialog(int id, Dialog dialog) {
-        if (id ==DATE_DIALOG_ID){
-                ((DatePickerDialog) dialog).updateDate(mYear, mMonth, mDay);
+        if (id == DATE_DIALOG_ID) {
+            ((DatePickerDialog) dialog).updateDate(mYear, mMonth, mDay);
 
         }
     }
@@ -118,8 +111,6 @@ public class ChangePlanActivity extends ActionBarActivity implements View.OnClic
                     updateDisplay();
                 }
             };
-
-
 
 
 }
