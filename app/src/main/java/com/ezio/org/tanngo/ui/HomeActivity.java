@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.ezio.org.tanngo.utils.MyPreference;
+import com.ezio.org.tanngo.R;
+import com.ezio.org.tanngo.utils.Utility;
 
 import cn.bmob.v3.Bmob;
 
@@ -40,6 +44,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         initialize();
+
 
         //test code
         String dictName = myPref.getDictName();

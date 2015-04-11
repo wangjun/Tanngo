@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import android.text.format.Time;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ezio.org.tanngo.R;
 import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
 

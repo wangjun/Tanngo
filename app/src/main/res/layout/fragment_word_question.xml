@@ -11,8 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:gravity="center_horizontal"
+        android:background="@color/primary"
         android:orientation="vertical"
         >
 
@@ -20,13 +21,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="单词"
+            android:textAppearance="?android:textAppearanceLarge"
             android:id="@+id/word_text"
+
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/kana_text"
+            android:textAppearance="?android:textAppearanceMedium"
             android:text="かな"
             />
 
@@ -34,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/example_sentence_text"
+            android:textAppearance="?android:textAppearanceMedium"
             android:text="この番組わ"
             />
 
@@ -42,7 +47,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:orientation="vertical"
         >
 

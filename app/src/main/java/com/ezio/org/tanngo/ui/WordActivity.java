@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.ezio.org.tanngo.utils.MyPreference;
+import com.ezio.org.tanngo.R;
+import com.ezio.org.tanngo.utils.Utility;
 import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
 

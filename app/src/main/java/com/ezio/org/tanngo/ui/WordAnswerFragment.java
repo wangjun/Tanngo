@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 
 import android.app.Activity;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.ezio.org.tanngo.R;
 
 
 /**

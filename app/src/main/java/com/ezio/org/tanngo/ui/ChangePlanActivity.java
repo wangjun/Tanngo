@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+
+import com.ezio.org.tanngo.utils.MyPreference;
+import com.ezio.org.tanngo.R;
 
 
 public class ChangePlanActivity extends Activity implements View.OnClickListener {

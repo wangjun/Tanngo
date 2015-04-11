@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ezio.org.tanngo.R;
 
 
 /**

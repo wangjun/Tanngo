@@ -1,4 +1,4 @@
-package com.ezio.org.tanngo;
+package com.ezio.org.tanngo.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.ezio.org.tanngo.R;
+import com.ezio.org.tanngo.utils.Utility;
 
 /**
  * Created by Ezio on 2015/4/6.
