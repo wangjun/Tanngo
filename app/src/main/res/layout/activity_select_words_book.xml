@@ -1,26 +1,22 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
+    <ListView
+        android:id="@+id/books_list_view"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="32dp"-->
+    <!--android:id="@+id/make_testing_dict"-->
+    <!--android:text="生成并选择测试词典"-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="32dp"
-            android:id="@+id/make_testing_dict"
-            android:text="生成并选择测试词典"
-
-            />
-
-        </LinearLayout>
-
-
-</ScrollView>
+    <!--/>-->
+</FrameLayout>

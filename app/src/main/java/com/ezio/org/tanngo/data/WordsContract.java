@@ -11,7 +11,7 @@ public class WordsContract {
     // relationship between a domain name and its website.  A convenient string to use for the
     // content authority is the package name for the app, which is guaranteed to be unique on the
     // device.
-    public static final String CONTENT_AUTHORITY = "com.ezio.org.tanngo";
+    //public static final String CONTENT_AUTHORITY = "com.ezio.org.tanngo";
 
     public static final class WordsEntry implements BaseColumns {
 

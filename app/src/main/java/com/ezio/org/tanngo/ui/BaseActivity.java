@@ -41,6 +41,11 @@ public abstract class BaseActivity extends Activity{
      */
     public abstract void setContentView();
 
+    /** 进行数据初始化
+     * initData
+     */
+    public abstract void initData();
+
     /**
      * 初始化布局文件中的控件
      */
@@ -51,10 +56,7 @@ public abstract class BaseActivity extends Activity{
      */
     public abstract void initListeners();
 
-    /** 进行数据初始化
-     * initData
-     */
-    public abstract void initData();
+
 
 
     Toast mToast;

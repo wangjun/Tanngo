@@ -1,5 +1,10 @@
 package com.ezio.org.tanngo.utils;
 
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.HashSet;
 
 /**
@@ -34,6 +39,22 @@ public class Utility {
 
     public static int randomInt(int min, int max) {
         return (int) (Math.random() * (max - min)) + min;
+    }
+
+
+    public static void ShowToast(String text,Context mContext) {
+
+        if (!TextUtils.isEmpty(text)) {
+
+            Toast.makeText(mContext, text,Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    public static void ShowDebugLog(String title,String text){
+        if (!TextUtils.isEmpty(text)&&!TextUtils.isEmpty(title)){
+            Log.d(LOG_TAG,title+"----->"+text);
+        }
     }
 
 
