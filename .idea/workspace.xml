@@ -117,7 +117,7 @@
       <file leaf-file-name="ChangePlanActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/ChangePlanActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1518" max-vertical-offset="3234">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1386" max-vertical-offset="3234">
               <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
               <folding>
                 <element signature="e#2304#2321#0" expanded="true" />
@@ -149,9 +149,28 @@
       <file leaf-file-name="WordsBookDetailActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/WordsBookDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.245283" vertical-offset="0" max-vertical-offset="1650">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.7569367" vertical-offset="396" max-vertical-offset="2134">
+              <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+              <folding>
+                <element signature="e#1734#2225#0" expanded="true" />
+                <element signature="e#2202#2203#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WordsBooksTable.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/data/WordsBooksTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1672">
+              <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1146#1147#0" expanded="true" />
+                <element signature="e#1173#1174#0" expanded="true" />
+                <element signature="e#2014#2015#0" expanded="true" />
+                <element signature="e#2046#2047#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1017,18 +1036,18 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BooksAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BooksLayoutManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_select_words_book.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/data/WordsBooksTable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BookAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/QuickAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/WordActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/SelectWordsBookActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_words_book_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_change_plan.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/BaseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/ChangePlanActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/book_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/WordsBooksListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_words_book_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/data/WordsBooksTable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/WordsBookDetailActivity.java" />
       </list>
     </option>
@@ -1642,7 +1661,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
@@ -1958,17 +1977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_words_book_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43988684" vertical-offset="393" max-vertical-offset="1100">
-          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_select_words_book.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2053,40 +2061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/data/WordsBooksTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89113927" vertical-offset="0" max-vertical-offset="1452">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BaseAdapterHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="7150">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BaseQuickAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="3498">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/ChangePlanActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1518" max-vertical-offset="3234">
-          <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
-          <folding>
-            <element signature="e#2304#2321#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/QuickAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1122">
@@ -2128,11 +2102,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_words_book_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8989667" vertical-offset="229" max-vertical-offset="1232">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/ChangePlanActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1518" max-vertical-offset="3234">
+          <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
+          <folding>
+            <element signature="e#2304#2321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BaseAdapterHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="7150">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/adapter/BaseQuickAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="3498">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/data/WordsBooksTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1672">
+          <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ezio/org/tanngo/ui/WordsBookDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.245283" vertical-offset="0" max-vertical-offset="1650">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.7569367" vertical-offset="396" max-vertical-offset="2134">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+          <folding>
+            <element signature="e#1734#2225#0" expanded="true" />
+            <element signature="e#2202#2203#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,6 +1,8 @@
 package com.ezio.org.tanngo.ui;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
@@ -12,12 +14,14 @@ import cn.bmob.v3.listener.GetListener;
 public class WordsBookDetailActivity extends BaseActivity {
 
 
-    TextView mBookName;
-    TextView mWordsCount;
-    TextView mLevel;
-    TextView mAuthor;
-    TextView mPrice;
-    TextView mDescribe;
+    private TextView mBookName;
+    private TextView mWordsCount;
+    private TextView mLevel;
+    private TextView mAuthor;
+    private TextView mPrice;
+    private TextView mDescribe;
+
+    private Button mDownLoadBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +42,26 @@ public class WordsBookDetailActivity extends BaseActivity {
             BmobQuery<WordsBooksTable> query = new BmobQuery<WordsBooksTable>();
             query.getObject(this,itemId,new GetListener<WordsBooksTable>() {
                 @Override
-                public void onSuccess(WordsBooksTable wordsBooksTable) {
+                public void onSuccess(final WordsBooksTable wordsBooksTable) {
                     mBookName.setText(wordsBooksTable.getBookName());
                     mWordsCount.setText(wordsBooksTable.getWordsCount()+"");
                     mLevel.setText(wordsBooksTable.getLevel());
                     mAuthor.setText(wordsBooksTable.getAuthor());
                     mPrice.setText(wordsBooksTable.getPrice()+"");
                     mDescribe.setText(wordsBooksTable.getDescribe());
+
+                    //下载按钮
+                    mDownLoadBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (wordsBooksTable.getFile()!=null){
+                                wordsBooksTable.getFile().getFilename();
+                                wordsBooksTable.getFile().getFileUrl(getApplicationContext());
+                                //TODO：之后自己实现下载，progress bar 等
+                            }
+                        }
+                    });
+
                 }
 
                 @Override
@@ -66,12 +83,19 @@ public class WordsBookDetailActivity extends BaseActivity {
         mPrice= (TextView)findViewById(R.id.detail_price);
         mDescribe= (TextView)findViewById(R.id.detail_describe);
 
+        mDownLoadBtn = (Button)findViewById(R.id.detail_download_book);
+
 
     }
 
     @Override
     public void initListeners() {
+        mDownLoadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
 

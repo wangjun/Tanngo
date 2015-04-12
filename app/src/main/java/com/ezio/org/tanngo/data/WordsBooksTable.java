@@ -1,6 +1,7 @@
 package com.ezio.org.tanngo.data;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * Created by Ezio on 2015/4/11.
@@ -8,21 +9,22 @@ import cn.bmob.v3.BmobObject;
 public class WordsBooksTable extends BmobObject {
 
     private String bookName;
-    private int wordsCount;
+    private Integer wordsCount;
     private String describe;
     private String level;
-    private int price;
+    private Integer price;
     private String author;
-    private int hot;
+    private Integer hot;
     private String url;
     private String tag;
     private String imageUrl;
+    private BmobFile file;
 
     public String getBookName() {
         return bookName;
     }
 
-    public int getWordsCount() {
+    public Integer getWordsCount() {
         return wordsCount;
     }
 
@@ -34,7 +36,7 @@ public class WordsBooksTable extends BmobObject {
         return level;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -42,7 +44,7 @@ public class WordsBooksTable extends BmobObject {
         return author;
     }
 
-    public int getHot() {
+    public Integer getHot() {
         return hot;
     }
 
@@ -58,11 +60,15 @@ public class WordsBooksTable extends BmobObject {
         return imageUrl;
     }
 
+    public BmobFile getFile() {
+        return file;
+    }
+
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
 
-    public void setWordsCount(int wordsCount) {
+    public void setWordsCount(Integer wordsCount) {
         this.wordsCount = wordsCount;
     }
 
@@ -74,7 +80,7 @@ public class WordsBooksTable extends BmobObject {
         this.level = level;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -82,7 +88,7 @@ public class WordsBooksTable extends BmobObject {
         this.author = author;
     }
 
-    public void setHot(int hot) {
+    public void setHot(Integer hot) {
         this.hot = hot;
     }
 
@@ -96,5 +102,9 @@ public class WordsBooksTable extends BmobObject {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setFile(BmobFile file) {
+        this.file = file;
     }
 }

@@ -40,5 +40,11 @@
         android:id="@+id/detail_describe"
         android:text="detail_describe"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_download_book"
+        android:text="下载词典"/>
+
 
 </LinearLayout>
