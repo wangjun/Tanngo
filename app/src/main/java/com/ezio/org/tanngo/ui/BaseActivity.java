@@ -25,13 +25,13 @@ public abstract class BaseActivity extends Activity{
         super.onCreate(savedInstanceState);
 
         //initial Bmob SDK
-        Bmob.initialize(this, BMOB_APP_ID);
+        Bmob.initialize(getApplicationContext(), BMOB_APP_ID);
         myPref = new MyPreference(getApplicationContext());
 
 
         setContentView();
-        initData();
         initViews();
+        initData();
         initListeners();
 
     }

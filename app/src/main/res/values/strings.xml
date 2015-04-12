@@ -13,6 +13,7 @@
 
 
     <string name="change_back_words_plan">修改计划</string>
+    <string name="title_activity_words_book_detail">WordsBookDetailActivity</string>
 
 
 </resources>

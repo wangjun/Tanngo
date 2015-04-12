@@ -66,6 +66,11 @@ public class WordActivity extends BaseActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+
         super.onCreate(savedInstanceState);
 
     }
@@ -77,6 +82,13 @@ public class WordActivity extends BaseActivity implements
 
     @Override
     public void initViews() {
+
+        //get the words book's name , use it as table name to query from database
+        String dictName = myPref.getDictName();
+        todayWordsNum = myPref.getTodayWordsNumTotal();
+
+        queryWordsInfo(dictName);
+
         //get the content
         Bundle bundle = new Bundle();
         getFragmentPage(bundle);
@@ -90,11 +102,7 @@ public class WordActivity extends BaseActivity implements
     @Override
     public void initData() {
 
-        //get the words book's name , use it as table name to query from database
-        String dictName = myPref.getDictName();
-        todayWordsNum = myPref.getTodayWordsNumTotal();
 
-        queryWordsInfo(dictName);
     }
 
     //判断下一个要填充的fragment类型,将需要显示的东西作为参数传进去,给fragment处理
