@@ -2,15 +2,23 @@ package com.ezio.org.tanngo.ui;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ezio.org.tanngo.R;
 import com.ezio.org.tanngo.data.WordsBooksTable;
+import com.ezio.org.tanngo.data.WordsContract;
+import com.ezio.org.tanngo.data.WordsDbHelper;
+import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.utils.Utility;
 
 import java.util.List;
@@ -32,6 +40,8 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
     private int mMonth;
     private int mDay;
 
+    public final static String FAKE_DICT_NAME= "fake";
+
 
 
 
@@ -40,6 +50,59 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         updateDisplay();
+
+        Button testButton = (Button) findViewById(R.id.make_testing_dict);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Ezio", "onClick----->");
+                 Context context = v.getContext();
+
+                //change words book name in SP to the table name of words book
+                myPref = new MyPreference(context);
+                myPref.setDictName(FAKE_DICT_NAME);
+
+
+                creatFooDict(context);
+
+                myPref.getRemainingWordsNumTotal();
+                Toast.makeText(context, "db created ,please back", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+    }
+
+    public void creatFooDict(Context context) {
+
+        //create db
+        WordsDbHelper mDbHelp = new WordsDbHelper(context);
+        SQLiteDatabase db = mDbHelp.getWritableDatabase();
+
+        if (!mDbHelp.isTableExist(myPref.getDictName())){
+
+            //create table
+            mDbHelp.creatTableIfNotExist(myPref.getDictName());
+
+
+            //insert data into table
+            for (int i = 0; i < 50; i++) {
+                ContentValues values = new ContentValues();
+
+                values.put(WordsContract.WordsEntry.COLUMN_WORD, "Placehold Word " + i);
+                values.put(WordsContract.WordsEntry.COLUMN_KANA, "Placehold Kana " + i);
+                values.put(WordsContract.WordsEntry.COLUMN_EXAMPLE_SENTENCE, "Placehold sentence " + i);
+                values.put(WordsContract.WordsEntry.COLUMN_DEFINITION, "Placehold definition " + i);
+
+                long newRowId;
+                newRowId = db.insert(myPref.getDictName(), null, values);
+
+            }
+
+
+        }
+
 
     }
 

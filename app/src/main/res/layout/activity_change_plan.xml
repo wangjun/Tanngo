@@ -33,6 +33,15 @@
         android:text="读取云端数据"
         android:id="@+id/read_fake_data"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="32dp"
+        android:id="@+id/make_testing_dict"
+        android:text="生成并选择测试词典"
+
+        />
+
 
 
 

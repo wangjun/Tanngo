@@ -1,9 +1,7 @@
 package com.ezio.org.tanngo.ui;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,8 +12,6 @@ import com.ezio.org.tanngo.R;
 import com.ezio.org.tanngo.adapter.BaseAdapterHelper;
 import com.ezio.org.tanngo.adapter.QuickAdapter;
 import com.ezio.org.tanngo.data.WordsBooksTable;
-import com.ezio.org.tanngo.data.WordsContract;
-import com.ezio.org.tanngo.data.WordsDbHelper;
 import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.utils.Utility;
 
@@ -38,6 +34,9 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
     TextView bookName;
     TextView bookWordsCount;
 
+
+
+
     public final static String BOOK_KEY="book_key";
 
 
@@ -46,7 +45,10 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
         super.onCreate(savedInstanceState);
 
 
+
     }
+
+
 
 
     @Override
@@ -134,36 +136,7 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
         });
     }
 
-    public void creatFooDict() {
 
-        //create db
-        WordsDbHelper mDbHelp = new WordsDbHelper(mContext);
-        SQLiteDatabase db = mDbHelp.getWritableDatabase();
-
-        if (!mDbHelp.isTableExist(myPref.getDictName())){
-
-            //create table
-
-
-            //insert data into table
-            for (int i = 0; i < 50; i++) {
-                ContentValues values = new ContentValues();
-
-                values.put(WordsContract.WordsEntry.COLUMN_WORD, "Placehold Word " + i);
-                values.put(WordsContract.WordsEntry.COLUMN_KANA, "Placehold Kana " + i);
-                values.put(WordsContract.WordsEntry.COLUMN_EXAMPLE_SENTENCE, "Placehold sentence " + i);
-                values.put(WordsContract.WordsEntry.COLUMN_DEFINITION, "Placehold definition " + i);
-
-                long newRowId;
-                newRowId = db.insert(myPref.getDictName(), null, values);
-
-            }
-
-
-        }
-
-
-    }
 
 
     @Override

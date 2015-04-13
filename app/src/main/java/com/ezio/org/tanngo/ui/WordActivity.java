@@ -33,7 +33,7 @@ public class WordActivity extends BaseActivity implements
     public final static String DONE_PAGE = "done_page";
 
 
-    private String nextPageType = QUESTION_PAGE;
+    private String pageType = QUESTION_PAGE;
 
     //fragment tag , 然而并没有什么卵用
     public final static String QUE_TAG = "question_tag";
@@ -67,13 +67,11 @@ public class WordActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
-
-
         super.onCreate(savedInstanceState);
 
     }
+
+
 
     @Override
     public void setContentView() {
@@ -86,6 +84,9 @@ public class WordActivity extends BaseActivity implements
         //get the words book's name , use it as table name to query from database
         String dictName = myPref.getDictName();
         todayWordsNum = myPref.getTodayWordsNumTotal();
+        nowWordIndex = todayWordsNum-myPref.getTodayWordsRemaining();
+        pageType = myPref.getWordPageType();
+
 
         queryWordsInfo(dictName);
 
@@ -105,6 +106,26 @@ public class WordActivity extends BaseActivity implements
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        int todayWordsRemaining = todayWordsNum-nowWordIndex;
+        myPref.setTodayWordsRemaining(todayWordsRemaining);
+    }
+
+
+    public final static String SAVED_NOW_WORD_INDEX= "saved_now_word_index";
+    public final static String SAVED_NEXT_PAGE_TYPE="saved_next_page_type";
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(SAVED_NOW_WORD_INDEX,nowWordIndex);
+        outState.putString(SAVED_NEXT_PAGE_TYPE, pageType);
+
+    }
+
     //判断下一个要填充的fragment类型,将需要显示的东西作为参数传进去,给fragment处理
     private void getFragmentPage(Bundle bundle) {
         FragmentManager fm = getFragmentManager();
@@ -112,7 +133,7 @@ public class WordActivity extends BaseActivity implements
 
 
         //two diff fragments have diff bundle, have to make some diff
-        if (nextPageType.equals(QUESTION_PAGE)) {
+        if (pageType.equals(QUESTION_PAGE)) {
 
             //this bundle will be set into fragment as args
             bundle.putString(WORD_KEY, wordsList[nowWordIndex]);
@@ -141,7 +162,7 @@ public class WordActivity extends BaseActivity implements
                     QUE_TAG + nowWordIndex).commit();
 
 
-        } else if (nextPageType.equals(ANSWER_PAGE)) {
+        } else if (pageType.equals(ANSWER_PAGE)) {
 
             //this bundle will be set into fragment as args
             bundle.putString(WORD_KEY, wordsList[nowWordIndex]);
@@ -157,7 +178,7 @@ public class WordActivity extends BaseActivity implements
                     ANS_TAG + nowWordIndex).commit();
 
 
-        } else if (nextPageType.equals(DONE_PAGE)) {
+        } else if (pageType.equals(DONE_PAGE)) {
             //All words back done,show finished page
             DoneFragment doneFragment = new DoneFragment();
             transaction.replace(R.id.container_in_word_activity,
@@ -214,7 +235,7 @@ public class WordActivity extends BaseActivity implements
     @Override
     public void onDefiBtnSelected(View v, Button rightBTN) {
 
-        nextPageType = ANSWER_PAGE;
+        pageType = ANSWER_PAGE;
 
         //check is the user's answer is right ,and pass it to Answer Fragment
         Bundle bundle = new Bundle();
@@ -261,7 +282,7 @@ public class WordActivity extends BaseActivity implements
     @Override
     public void onNextWordBtnSelected(Boolean isCorrect) {
 
-        nextPageType = QUESTION_PAGE;
+        pageType = QUESTION_PAGE;
 
 
         if (isCorrect) {
@@ -270,7 +291,7 @@ public class WordActivity extends BaseActivity implements
             int remainingWords = todayWordsNum - nowWordIndex;
             myPref.setTodayWordsRemaining(remainingWords);
             if (remainingWords == 0) {
-                nextPageType = DONE_PAGE;
+                pageType = DONE_PAGE;
             }
 
         } else {
