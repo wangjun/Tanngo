@@ -46,38 +46,8 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
         super.onCreate(savedInstanceState);
 
 
-
-
-
-
-
-//        //TODO:由测试可知，处理数据库时间相当长，要在适当的时候用下progressbar，转圈圈，还有工作线程
-//
-//        Button testButton = (Button) findViewById(R.id.make_testing_dict);
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("Ezio", "onClick----->");
-//                mContext = v.getContext();
-//
-//                //change words book name in SP to the table name of words book
-//                myPref = new MyPreference(mContext);
-//                myPref.setDictName(WordsContract.WordsEntry.TABLE_NAME);
-//
-//
-//
-//                creatFooDict();
-//
-//                myPref.getRemainingWordsNumTotal();
-//                Toast.makeText(mContext, "db created ,please back", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//
-//
-//            }
-//        });
     }
+
 
     @Override
     public void setContentView() {
@@ -173,7 +143,7 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
         if (!mDbHelp.isTableExist(myPref.getDictName())){
 
             //create table
-            mDbHelp.creatTableIfNotExist(myPref.getDictName());
+
 
             //insert data into table
             for (int i = 0; i < 50; i++) {

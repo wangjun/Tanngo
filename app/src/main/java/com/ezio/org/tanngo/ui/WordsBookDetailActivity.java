@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
 import com.ezio.org.tanngo.data.WordsBooksTable;
+import com.ezio.org.tanngo.service.FetchBookAndInsertTask;
+import com.ezio.org.tanngo.utils.Utility;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.GetListener;
@@ -26,6 +28,7 @@ public class WordsBookDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -55,9 +58,14 @@ public class WordsBookDetailActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             if (wordsBooksTable.getFile()!=null){
-                                wordsBooksTable.getFile().getFilename();
-                                wordsBooksTable.getFile().getFileUrl(getApplicationContext());
-                                //TODO：之后自己实现下载，progress bar 等
+                                String fileName =wordsBooksTable.getFile().getFilename();
+                                String fileUrl = wordsBooksTable.getFile().getFileUrl(getApplicationContext());
+
+                                new FetchBookAndInsertTask(getApplicationContext())
+                                        .execute(fileUrl,fileName);
+                            }else {
+                                Utility.ShowToast("服务器端没有文件",getApplicationContext());
+                                Utility.ShowDebugLog("file",wordsBooksTable.getFile().toString());
                             }
                         }
                     });
@@ -90,12 +98,7 @@ public class WordsBookDetailActivity extends BaseActivity {
 
     @Override
     public void initListeners() {
-        mDownLoadBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
 

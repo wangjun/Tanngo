@@ -15,10 +15,8 @@ public class WordsContract {
 
     public static final class WordsEntry implements BaseColumns {
 
-        //placeholder table name
-        //think about how to distinguish different users' same words book
-        //can't be used in real
-        public static final String TABLE_NAME = "words_table";
+
+
 
         //cannot be null,text
         public static final String COLUMN_WORD = "word";

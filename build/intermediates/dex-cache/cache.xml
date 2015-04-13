@@ -2,6 +2,20 @@
 <items version="2" >
 
     <item
+        jar="C:\Dropbox\githubrepo\Tanngo\app\libs\BmobSDK_V3.3.4_0310.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5e884ae1dd997270c0c97ddbb41e3ad93c055033">
+        <dex dex="C:\Dropbox\githubrepo\Tanngo\app\build\intermediates\pre-dexed\debug\BmobSDK_V3.3.4_0310-fdad1087869ba7da45d658cf571d40e1968b5048.jar" />
+    </item>
+    <item
+        jar="C:\Users\Ezio\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Dropbox\githubrepo\Tanngo\app\build\intermediates\pre-dexed\debug\gson-2.3.1-4a138b75837320efe832a93528083c015ff15a8d.jar" />
+    </item>
+    <item
         jar="C:\Users\Ezio\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -21,13 +35,6 @@
         revision="22.0.1"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="C:\Dropbox\githubrepo\Tanngo\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-783e10862c8c3255c39ce035e99d8e79f6798efc.jar" />
-    </item>
-    <item
-        jar="C:\Dropbox\githubrepo\Tanngo\app\libs\BmobSDK_V3.3.4_0310.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="5e884ae1dd997270c0c97ddbb41e3ad93c055033">
-        <dex dex="C:\Dropbox\githubrepo\Tanngo\app\build\intermediates\pre-dexed\debug\BmobSDK_V3.3.4_0310-fdad1087869ba7da45d658cf571d40e1968b5048.jar" />
     </item>
     <item
         jar="C:\Dropbox\githubrepo\Tanngo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"

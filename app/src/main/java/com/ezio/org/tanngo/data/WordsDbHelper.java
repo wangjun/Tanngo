@@ -35,23 +35,19 @@ public class WordsDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
-
-
-
-
-        //这个onCreate只有在db第一次创建的时候执行，所以判断表存不存在要在外部执行
-        //TODO:
-
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-
-
     }
 
+    /**
+     * use table name args build a SQL query to create words table
+     * @param tableName the name of words book, be used as table name and stored in sharedPreference
+     * @return SQL query string
+     * @author
+     * */
     public String getCreateWordsTableString(String tableName){
           final String SQL_CREATE_WORDS_TABLE = "CREATE TABLE " + tableName + "(" +
                 WordsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -66,6 +62,12 @@ public class WordsDbHelper extends SQLiteOpenHelper {
         return SQL_CREATE_WORDS_TABLE;
     }
 
+    /**
+     * check if table exist
+     * @param tableName words book name OR table name
+     * @return boolean
+     * @author
+     * */
     public boolean isTableExist(String tableName){
         final String CHECK_IS_TABLE_EXIST = "SELECT count(*) FROM sqlite_master WHERE type='table'" +
                 " AND name='"+tableName+"';";
@@ -105,10 +107,16 @@ public class WordsDbHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    /**
+     * creat table if no longer exist, and set table name as dict name in SharedPreference
+     * @param tableName words book name OR table name
+     * @author
+     * */
     public void creatTableIfNotExist(String tableName){
 
         if (!isTableExist(tableName)){
-            db.execSQL(getCreateWordsTableString(myPref.getDictName()));
+            db.execSQL(getCreateWordsTableString(tableName));
+            myPref.setDictName(tableName);
         }
 
 
