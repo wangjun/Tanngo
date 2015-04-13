@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ezio.org.tanngo.R;
+
 import java.util.HashSet;
 
 /**
@@ -55,8 +57,25 @@ public class Utility {
 
     public static void ShowDebugLog(String title,String text){
         if (!TextUtils.isEmpty(text)&&!TextUtils.isEmpty(title)){
-            Log.d(LOG_TAG,title+"----->"+text);
+            Log.d(LOG_TAG, title + "----->" + text);
         }
+    }
+
+
+    public static String formatTotalProgress(Context context, int done, int total){
+
+        return context.getString(R.string.formatted_total_progress,done,total);
+    }
+
+
+    public static String getFileNameNoEx(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot >-1) && (dot < (filename.length()))) {
+                return filename.substring(0, dot);
+            }
+        }
+        return filename;
     }
 
 

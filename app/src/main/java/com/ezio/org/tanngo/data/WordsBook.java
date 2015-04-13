@@ -6,7 +6,7 @@ import cn.bmob.v3.datatype.BmobFile;
 /**
  * Created by Ezio on 2015/4/11.
  */
-public class WordsBooksTable extends BmobObject {
+public class WordsBook extends BmobObject {
 
     private String bookName;
     private Integer wordsCount;
@@ -15,7 +15,7 @@ public class WordsBooksTable extends BmobObject {
     private Integer price;
     private String author;
     private Integer hot;
-    private String url;
+    private String url;ss
     private String tag;
     private String imageUrl;
     private BmobFile file;

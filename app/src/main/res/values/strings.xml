@@ -1,19 +1,35 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="app_name">Tanngo</string>
 
 
+    <!--activity-->
     <string name="action_settings">设置</string>
-    <string name="title_activity_word">WordActivity</string>
-    <string name="title_activity_select_dict">SelectDictActivity</string>
-    <string name="title_activity_change_plan">ChangePlanActivity</string>
-
-
-    <string name="default_preference_file_key">com.ezio.org.tanngo.DEFAULT_PREFERENCE_FILE_KEY</string>
-    <string name="hello_world">Hello world!</string>
-
-
+    <string name="title_activity_word">背单词</string>
+    <string name="title_activity_words_book_list">选择单词书</string>
+    <string name="title_activity_change_plan">修改计划</string>
     <string name="change_back_words_plan">修改计划</string>
-    <string name="title_activity_words_book_detail">WordsBookDetailActivity</string>
+    <string name="title_activity_words_book_detail">详细信息</string>
+
+
+    <!--data Key-->
+    <string name="default_preference_file_key">com.ezio.org.tanngo.DEFAULT_PREFERENCE_FILE_KEY</string>
+
+
+    <!--fomatted String-->
+    <string name="formatted_total_progress">
+        已学会<xliff:g id="already_done_words_total">%1$d</xliff:g>/<xliff:g id="words_total">%2$d</xliff:g>
+    </string>
+
+    <!--normal ui string-->
+
+    <!--homeActivity-->
+    <string name="every_day_back_words">每天背单词</string>
+    <string name="a">个</string>
+    <string name="remaining">剩余</string>
+    <string name="day">天</string>
+    <string name="start_to_back_words">开始背单词</string>
+    <string name="today_already_done">今天已完成</string>
+
 
 
 </resources>

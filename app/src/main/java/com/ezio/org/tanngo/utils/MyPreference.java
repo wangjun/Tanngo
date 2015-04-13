@@ -83,6 +83,7 @@ public class MyPreference {
 
 
 
+
     }
 
 
@@ -197,12 +198,22 @@ public class MyPreference {
         int remainderNum = getRemainingWordsNumTotal() * 7 % getRemainingDay();
 
 
-        //b
-        //每天最少背10个词
-        //TODO:注意修改deadline日期
+
+        //TODO:因为目前是在今天的其他词的释义中选取作为错误选项，所以在词很少的时候有些困难，
+        // TODO:所以暂定每天最少背10个词，之后改进
+        //TODO：另外不应该粗暴乘以7，而是sql query 每个单词剩下的次数，然后累加起来
+        //对于词的给出逻辑还有很大提升余地
+        //可能应该是每天每个单词要过一个3、4次连续正确这样
+
         if (wordsNumEachDay > EACH_DAY_AT_LEAST_WORDS) {
             return wordsNumEachDay;
         } else if (wordsNumEachDay <= EACH_DAY_AT_LEAST_WORDS) {
+            int dlday =getRemainingWordsNumTotal() * 7 /10 +currentJulianDay;
+            Time dltime = new Time();
+            dltime.setJulianDay(dlday);
+            setDeadlineDay(dltime.monthDay);
+            setDeadlineMonth(dltime.month + 1);
+            setDeadlineYear(dltime.year);
             return EACH_DAY_AT_LEAST_WORDS;
         } else if (wordsNumEachDay == 0 && remainderNum > 7) {
             return remainderNum;

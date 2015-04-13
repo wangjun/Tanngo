@@ -11,8 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-
-
         >
 
 
@@ -26,14 +24,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="每天背单词"
+                android:text="@string/every_day_back_words"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:text="999"
+                android:text="0"
                 android:id="@+id/words_eachday"
                 android:textSize="72sp"
                 />
@@ -42,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="个"
+                android:text="@string/a"
                 android:textAppearance="?android:textAppearanceMedium" />
 
 
@@ -57,14 +55,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="剩余"
+                android:text="@string/remaining"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:text="99"
+                android:text="0"
                 android:textSize="72sp"
                 android:id="@+id/remaining_day"
                 />
@@ -73,49 +71,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="天"
+                android:text="@string/day"
                 android:textAppearance="?android:textAppearanceMedium" />
 
 
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
 
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="已完成"
-                android:textAppearance="?android:textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="99"
-                android:id="@+id/already_done_words_total"
-                android:textAppearance="?android:textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"
-
-                android:textAppearance="?android:textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9999"
-                android:id="@+id/words_total"
-                android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:text="已学会0/0"
+            android:id="@+id/total_progress_textview"
+            />
 
 
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -133,20 +105,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-
-
-
             android:background="@color/primary"
             android:layout_gravity="center_horizontal"
-
-
-            android:text="开始背"
+            android:text="@string/start_to_back_words"
             android:textSize="24sp"
-
             android:textColor="@android:color/white"
-
             android:id="@+id/start_back_words_BTN"
-
             />
 
         <LinearLayout
@@ -162,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="今天已完成"
+                android:text="@string/today_already_done"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <LinearLayout
@@ -173,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="99"
+                    android:text="0"
                     android:id="@+id/already_done_words_today"
                     android:textAppearance="?android:textAppearanceMedium" />
 
@@ -187,7 +151,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="999"
+                    android:text="0"
                     android:id="@+id/words_today"
                     android:textAppearance="?android:textAppearanceMedium" />
 

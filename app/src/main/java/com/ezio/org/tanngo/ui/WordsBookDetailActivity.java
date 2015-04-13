@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
-import com.ezio.org.tanngo.data.WordsBooksTable;
+import com.ezio.org.tanngo.data.WordsBook;
 import com.ezio.org.tanngo.service.FetchBookAndInsertTask;
 import com.ezio.org.tanngo.utils.Utility;
 
@@ -42,30 +42,32 @@ public class WordsBookDetailActivity extends BaseActivity {
 
         String itemId = getIntent().getStringExtra(WordsBooksListActivity.BOOK_KEY);
         if (itemId!=null){
-            BmobQuery<WordsBooksTable> query = new BmobQuery<WordsBooksTable>();
-            query.getObject(this,itemId,new GetListener<WordsBooksTable>() {
+            BmobQuery<WordsBook> query = new BmobQuery<WordsBook>();
+            query.getObject(this,itemId,new GetListener<WordsBook>() {
                 @Override
-                public void onSuccess(final WordsBooksTable wordsBooksTable) {
-                    mBookName.setText(wordsBooksTable.getBookName());
-                    mWordsCount.setText(wordsBooksTable.getWordsCount()+"");
-                    mLevel.setText(wordsBooksTable.getLevel());
-                    mAuthor.setText(wordsBooksTable.getAuthor());
-                    mPrice.setText(wordsBooksTable.getPrice()+"");
-                    mDescribe.setText(wordsBooksTable.getDescribe());
+                public void onSuccess(final WordsBook wordsBook) {
+                    mBookName.setText(wordsBook.getBookName());
+                    mWordsCount.setText(wordsBook.getWordsCount()+"");
+                    mLevel.setText(wordsBook.getLevel());
+                    mAuthor.setText(wordsBook.getAuthor());
+                    mPrice.setText(wordsBook.getPrice()+"");
+                    mDescribe.setText(wordsBook.getDescribe());
 
                     //下载按钮
                     mDownLoadBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (wordsBooksTable.getFile()!=null){
-                                String fileName =wordsBooksTable.getFile().getFilename();
-                                String fileUrl = wordsBooksTable.getFile().getFileUrl(getApplicationContext());
+                            if (wordsBook.getFile()!=null){
+                                String fileName = wordsBook.getFile().getFilename();
+                                String fileUrl = wordsBook.getFile().getFileUrl(getApplicationContext());
 
-                                new FetchBookAndInsertTask(getApplicationContext())
+                                Utility.ShowDebugLog("fileUrl",fileUrl);
+                                Utility.ShowDebugLog("fileName",fileName);
+                                new FetchBookAndInsertTask(WordsBookDetailActivity.this)
                                         .execute(fileUrl,fileName);
                             }else {
-                                Utility.ShowToast("服务器端没有文件",getApplicationContext());
-                                Utility.ShowDebugLog("file",wordsBooksTable.getFile().toString());
+                                Utility.ShowToast("服务器端没有文件", getApplicationContext());
+
                             }
                         }
                     });

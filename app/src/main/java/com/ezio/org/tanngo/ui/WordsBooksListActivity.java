@@ -1,6 +1,5 @@
 package com.ezio.org.tanngo.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +10,7 @@ import android.widget.TextView;
 import com.ezio.org.tanngo.R;
 import com.ezio.org.tanngo.adapter.BaseAdapterHelper;
 import com.ezio.org.tanngo.adapter.QuickAdapter;
-import com.ezio.org.tanngo.data.WordsBooksTable;
-import com.ezio.org.tanngo.utils.MyPreference;
+import com.ezio.org.tanngo.data.WordsBook;
 import com.ezio.org.tanngo.utils.Utility;
 
 import java.util.List;
@@ -22,20 +20,14 @@ import cn.bmob.v3.listener.FindListener;
 
 
 public class WordsBooksListActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+    
 
-    Context mContext;
-
-    MyPreference myPref;
-
-    protected QuickAdapter<WordsBooksTable> BooksAdapter;
+    protected QuickAdapter<WordsBook> BooksAdapter;
 
     ListView booksListView;
 
     TextView bookName;
     TextView bookWordsCount;
-
-
-
 
     public final static String BOOK_KEY="book_key";
 
@@ -43,8 +35,6 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -60,9 +50,9 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
     public void initData() {
 
         if (BooksAdapter == null){
-            BooksAdapter = new QuickAdapter<WordsBooksTable>(this,R.layout.book_item) {
+            BooksAdapter = new QuickAdapter<WordsBook>(this,R.layout.book_item) {
                 @Override
-                protected void convert(BaseAdapterHelper helper, WordsBooksTable item) {
+                protected void convert(BaseAdapterHelper helper, WordsBook item) {
                     helper.setText(R.id.book_name,item.getBookName());
                     helper.setText(R.id.book_words_count, item.getWordsCount() + "");
 
@@ -95,27 +85,27 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
 
     private void queryBooks(){
         booksListView.setVisibility(View.VISIBLE);
-        BmobQuery<WordsBooksTable> query = new BmobQuery<WordsBooksTable>();
+        BmobQuery<WordsBook> query = new BmobQuery<WordsBook>();
         query.order("-createdAt");
-        query.findObjects(this,new FindListener<WordsBooksTable>() {
+        query.findObjects(this,new FindListener<WordsBook>() {
             @Override
-            public void onSuccess(List<WordsBooksTable> wordsBooksTables) {
+            public void onSuccess(List<WordsBook> wordsBooks) {
                 BooksAdapter.clear();
                 Utility.ShowDebugLog("top","top");
-                if (wordsBooksTables==null||wordsBooksTables.size()==0){
+                if (wordsBooks ==null|| wordsBooks.size()==0){
                     //showErrorView
                     BooksAdapter.notifyDataSetChanged();
                     Utility.ShowDebugLog("in if ", "in if");
                     return;
                 }
 
-                for (int j = 0; j<wordsBooksTables.size();j++){
+                for (int j = 0; j< wordsBooks.size();j++){
                     Utility.ShowDebugLog("success","success");
-                    Utility.ShowDebugLog("name",wordsBooksTables.get(j).getBookName());
-                    Utility.ShowDebugLog("describe",wordsBooksTables.get(j).getBookName());
+                    Utility.ShowDebugLog("name", wordsBooks.get(j).getBookName());
+                    Utility.ShowDebugLog("describe", wordsBooks.get(j).getBookName());
                 }
                 //show progeress
-                BooksAdapter.addAll(wordsBooksTables);
+                BooksAdapter.addAll(wordsBooks);
                 booksListView.setAdapter(BooksAdapter);
 
                 for (int j = 0; j<BooksAdapter.getCount();j++){

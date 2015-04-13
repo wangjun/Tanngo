@@ -9,22 +9,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
+import com.ezio.org.tanngo.utils.Utility;
 
 
 public class HomeActivity extends BaseActivity {
 
-    //initial view
-    //private Button mWordsListBTN;
+
 
     private Button mStartBackWordsBTN;
 
     //be sure mWordsEachday's text same as mWordsToday, mWordsEachday don't use really each day data
     private TextView mWordsEachday;
     private TextView mRemainingDay;
-    private TextView mAlreadyDoneWordsTotal;
-    private TextView mWordsTotal;
     private TextView mAlreadyDoneWordsToday;
     private TextView mWordsToday;
+
+    private TextView mTotalProgress;
 
 
 
@@ -44,18 +44,16 @@ public class HomeActivity extends BaseActivity {
     @Override
     public void initViews() {
 
-        //button
-        //mWordsListBTN = (Button)findViewById(R.id.words_list_BTN);
+
 
         mStartBackWordsBTN = (Button) findViewById(R.id.start_back_words_BTN);
-
         //textView
         mWordsEachday = (TextView) findViewById(R.id.words_eachday);
         mRemainingDay = (TextView) findViewById(R.id.remaining_day);
-        mAlreadyDoneWordsTotal = (TextView) findViewById(R.id.already_done_words_total);
-        mWordsTotal = (TextView) findViewById(R.id.words_total);
         mAlreadyDoneWordsToday = (TextView) findViewById(R.id.already_done_words_today);
         mWordsToday = (TextView) findViewById(R.id.words_today);
+        mTotalProgress = (TextView)findViewById(R.id.total_progress_textview);
+
     }
 
     @Override
@@ -106,12 +104,19 @@ public class HomeActivity extends BaseActivity {
         mRemainingDay.setText(myPref.getRemainingDay() + "");
 
 
-        mAlreadyDoneWordsTotal.setText((myPref.getWordsNumTotal() - myPref.getRemainingWordsNumTotal()) + "");
-        mWordsTotal.setText(myPref.getWordsNumTotal() + "");
+
+        int alreadyDoneWordsTotal=(myPref.getWordsNumTotal() - myPref.getRemainingWordsNumTotal());
+        int wordsTotal=myPref.getWordsNumTotal();
+        mTotalProgress.setText(
+                Utility.formatTotalProgress(getApplicationContext(),
+                        alreadyDoneWordsTotal,
+                        wordsTotal));
 
 
+        //when land state , the string isn't on one row , so can't use formatted string temp
         mAlreadyDoneWordsToday.setText((myPref.getTodayWordsNumTotal() - myPref.getTodayWordsRemaining()) + "");
         mWordsToday.setText(myPref.getTodayWordsNumTotal() + "");
+
 
 
     }

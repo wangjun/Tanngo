@@ -102,7 +102,10 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
                     Float temp = ON_JSON_TRANSIMTED;
                     Float diff = ON_FINISHED-ON_JSON_TRANSIMTED/wordsList.length;
                     //sql
-                    myPref.setDictName(fileName);
+                    //TODO:将filename点全部去掉？
+
+                    String noExFileName=Utility.getFileNameNoEx(fileName);
+                    myPref.setDictName(noExFileName);
                     mDbHelper.creatTableIfNotExist(myPref.getDictName());
                     for (int i = 0; i<wordsList.length;i++){
                         ContentValues values = new ContentValues();

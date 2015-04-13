@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ezio.org.tanngo.R;
-import com.ezio.org.tanngo.data.WordsBooksTable;
+import com.ezio.org.tanngo.data.WordsBook;
 import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
 import com.ezio.org.tanngo.utils.MyPreference;
@@ -87,7 +87,7 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
 
 
             //insert data into table
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 3000; i++) {
                 ContentValues values = new ContentValues();
 
                 values.put(WordsContract.WordsEntry.COLUMN_WORD, "Placehold Word " + i);
@@ -152,18 +152,18 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
 
     private void readFakeData() {
 
-        BmobQuery<WordsBooksTable> query = new BmobQuery<WordsBooksTable>();
+        BmobQuery<WordsBook> query = new BmobQuery<WordsBook>();
 
         Utility.ShowDebugLog("prepare","prepare");
 
-        query.findObjects(this,new FindListener<WordsBooksTable>() {
+        query.findObjects(this,new FindListener<WordsBook>() {
             @Override
-            public void onSuccess(List<WordsBooksTable> wordsBooksTables) {
+            public void onSuccess(List<WordsBook> wordsBooks) {
 
-                for (int j = 0; j<wordsBooksTables.size();j++){
+                for (int j = 0; j< wordsBooks.size();j++){
                     Utility.ShowDebugLog("success","success");
-                    Utility.ShowDebugLog("name",wordsBooksTables.get(j).getBookName());
-                    Utility.ShowDebugLog("describe",wordsBooksTables.get(j).getBookName());
+                    Utility.ShowDebugLog("name", wordsBooks.get(j).getBookName());
+                    Utility.ShowDebugLog("describe", wordsBooks.get(j).getBookName());
                 }
 
             }
