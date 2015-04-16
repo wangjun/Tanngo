@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".ui.WordActivity"
-            android:label="@string/title_activity_word" >
+            android:label="@string/title_activity_word"
+            android:parentActivityName="com.ezio.org.tanngo.ui.HomeActivity">
         </activity>
         <activity
             android:name=".ui.WordsBooksListActivity"

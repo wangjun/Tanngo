@@ -48,6 +48,7 @@ public class MyPreference {
 
     private final static String saved_dict_name = "SAVED_DICT_NAME";
     private final static String saved_page_type = "saved_page_type";
+    private final static String is_word_right = "is_word_right";
 
     public final static int today_havent_run = -5;
     public final static int EACH_DAY_AT_LEAST_WORDS = 10;
@@ -324,6 +325,10 @@ public class MyPreference {
         return sp.getString(saved_page_type, WordActivity.QUESTION_PAGE);
     }
 
+    public boolean getIsWordRight(){
+        return sp.getBoolean(is_word_right, true);
+    }
+
     public void setDeadlineYear(int year) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt(saved_deadline_year, year);
@@ -351,6 +356,12 @@ public class MyPreference {
     public void setWordPageType(String pageType){
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(saved_page_type, pageType);
+        editor.apply();
+    }
+
+    public void setIsWordRight(boolean isRight){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(is_word_right, isRight);
         editor.apply();
     }
 

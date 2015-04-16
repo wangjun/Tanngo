@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
+import com.ezio.org.tanngo.utils.MyPreference;
 
 
 /**
@@ -33,6 +34,8 @@ public class WordAnswerFragment extends Fragment {
 
     private Boolean isCorrect;
 
+    private MyPreference myPref;
+
 
     public WordAnswerFragment() {
         super();
@@ -46,9 +49,10 @@ public class WordAnswerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_word_answer, container, false);
 
         initView(rootView);
+        myPref = new MyPreference(getActivity());
 
         Bundle args = getArguments();
-        isCorrect = args.getBoolean(WordActivity.IS_SELECT_RIGHT_KEY);
+        isCorrect = myPref.getIsWordRight();
 
         setTextToView(args);
 

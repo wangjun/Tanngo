@@ -53,6 +53,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
 
 
 
+        boolean aBoolean=false;
 
 
         if (params!=null&&params.length==2) {
@@ -105,6 +106,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
                     //TODO:将filename点全部去掉？
 
                     String noExFileName=Utility.getFileNameNoEx(fileName);
+                    noExFileName = "table"+noExFileName;
                     myPref.setDictName(noExFileName);
                     mDbHelper.creatTableIfNotExist(myPref.getDictName());
                     for (int i = 0; i<wordsList.length;i++){
@@ -122,10 +124,13 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
                         publishProgress(temp);
                     }
 
+                    aBoolean= true;
+
 
 
                 } catch (IOException e) {
                     e.printStackTrace();
+
                 } finally {
                     try {
                         if (readerJSON != null)
@@ -150,7 +155,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
             }
 
         }
-        return null;
+        return aBoolean;
     }
 
     private HttpURLConnection httpInit(String url) throws IOException {
@@ -193,6 +198,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
             Utility.ShowToast("下载失败",mContext);
         }else {
             //TODO:回到HomeActivity？
+            Utility.ShowToast("下载成功",mContext);
         }
 
         progressDialog.cancel();

@@ -15,7 +15,7 @@ public class WordsBook extends BmobObject {
     private Integer price;
     private String author;
     private Integer hot;
-    private String url;ss
+    private String url;
     private String tag;
     private String imageUrl;
     private BmobFile file;

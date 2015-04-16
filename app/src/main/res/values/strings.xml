@@ -4,7 +4,7 @@
 
     <!--activity-->
     <string name="action_settings">设置</string>
-    <string name="title_activity_word">背单词</string>
+    <string name="title_activity_word">Tanngo</string>
     <string name="title_activity_words_book_list">选择单词书</string>
     <string name="title_activity_change_plan">修改计划</string>
     <string name="change_back_words_plan">修改计划</string>

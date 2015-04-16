@@ -1,11 +1,18 @@
 package com.ezio.org.tanngo.ui;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.TaskStackBuilder;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -90,6 +97,10 @@ public class WordActivity extends BaseActivity implements
 
         queryWordsInfo(dictName);
 
+        ActionBar actionBar = getActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         //get the content
         Bundle bundle = new Bundle();
         getFragmentPage(bundle);
@@ -107,24 +118,28 @@ public class WordActivity extends BaseActivity implements
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-
+    protected void onPause() {
+        super.onPause();
         int todayWordsRemaining = todayWordsNum-nowWordIndex;
         myPref.setTodayWordsRemaining(todayWordsRemaining);
-    }
 
-
-    public final static String SAVED_NOW_WORD_INDEX= "saved_now_word_index";
-    public final static String SAVED_NEXT_PAGE_TYPE="saved_next_page_type";
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putInt(SAVED_NOW_WORD_INDEX,nowWordIndex);
-        outState.putString(SAVED_NEXT_PAGE_TYPE, pageType);
+        myPref.setWordPageType(pageType);
 
     }
+
+
+
+
+//    public final static String SAVED_NOW_WORD_INDEX= "saved_now_word_index";
+//    public final static String SAVED_NEXT_PAGE_TYPE="saved_next_page_type";
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        outState.putInt(SAVED_NOW_WORD_INDEX,nowWordIndex);
+//        outState.putString(SAVED_NEXT_PAGE_TYPE, pageType);
+//
+//    }
 
     //判断下一个要填充的fragment类型,将需要显示的东西作为参数传进去,给fragment处理
     private void getFragmentPage(Bundle bundle) {
@@ -240,7 +255,8 @@ public class WordActivity extends BaseActivity implements
         //check is the user's answer is right ,and pass it to Answer Fragment
         Bundle bundle = new Bundle();
         Boolean isRight = (v.getId() == rightBTN.getId());
-        bundle.putBoolean(IS_SELECT_RIGHT_KEY, isRight);
+        myPref.setIsWordRight(isRight);
+
         getFragmentPage(bundle);
 
         WordsDbHelper mDbHelper = new WordsDbHelper(getApplicationContext());
@@ -300,5 +316,27 @@ public class WordActivity extends BaseActivity implements
 
         Bundle bundle = new Bundle();
         getFragmentPage(bundle);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                    TaskStackBuilder.create(this)
+                            .addNextIntentWithParentStack(upIntent)
+                            .startActivities();
+                } else {
+                    upIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    NavUtils.navigateUpTo(this, upIntent);
+                }
+                return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
