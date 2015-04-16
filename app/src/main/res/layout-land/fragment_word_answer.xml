@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/word_question_fragment"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="word"
+            android:id="@+id/answer_word_text"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+
+
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kana"
+            android:id="@+id/answer_kana_text"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="defi"
+            android:id="@+id/answer_definition_text"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ex sentence"
+            android:id="@+id/answer_example_sentence_text"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一个单词"
+            android:background="@color/primary"
+            android:id="@+id/next_word_btn"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正确"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:id="@+id/is_answer_correct_text"
+            android:textAppearance="?android:textAppearanceLarge"
+            />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

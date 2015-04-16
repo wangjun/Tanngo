@@ -6,12 +6,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
-import com.ezio.org.tanngo.data.Word;
 import com.ezio.org.tanngo.data.WordsContract;
 import com.ezio.org.tanngo.data.WordsDbHelper;
 import com.ezio.org.tanngo.utils.MyPreference;
 import com.ezio.org.tanngo.utils.Utility;
-import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -80,6 +82,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
 
 
 
+
                     publishProgress(ON_CONNECTION_CREATED);
 
                     //stream
@@ -95,13 +98,14 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
                     publishProgress(ON_DOWNLOAD_FINISHED);
 
                     //json
-                    Gson gson = new Gson();
-                    Word[] wordsList = gson.fromJson(response.toString(),Word[].class);
+                    //Gson gson = new Gson();
+                    //Word[] wordsList = gson.fromJson(response.toString(),Word[].class);
+
+                    //List<Word> wordsList = gson.fromJson(response.toString(), new TypeToken<List<Word>>(){}.getType());
 
                     publishProgress(ON_JSON_TRANSIMTED);
 
-                    Float temp = ON_JSON_TRANSIMTED;
-                    Float diff = ON_FINISHED-ON_JSON_TRANSIMTED/wordsList.length;
+
                     //sql
                     //TODO:将filename点全部去掉？
 
@@ -109,20 +113,53 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
                     noExFileName = "table"+noExFileName;
                     myPref.setDictName(noExFileName);
                     mDbHelper.creatTableIfNotExist(myPref.getDictName());
-                    for (int i = 0; i<wordsList.length;i++){
-                        ContentValues values = new ContentValues();
 
-                        values.put(WordsContract.WordsEntry.COLUMN_WORD, wordsList[i].getWord());
-                        values.put(WordsContract.WordsEntry.COLUMN_KANA, wordsList[i].getKana());
-                        values.put(WordsContract.WordsEntry.COLUMN_EXAMPLE_SENTENCE, wordsList[i].getExample_sentence());
-                        values.put(WordsContract.WordsEntry.COLUMN_DEFINITION, wordsList[i].getDefinition());
+                    try{
+                        JSONArray jsonArray = new JSONArray(response.toString());
+
+                        Float temp = ON_JSON_TRANSIMTED;
+                        int jsonLength = jsonArray.length();
+                        Float diff = (ON_FINISHED-ON_JSON_TRANSIMTED)/jsonLength;
 
 
-                        long newRowId = db.insert(myPref.getDictName(), null, values);
+                        for (int i=0;i<jsonLength;i++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String word = jsonObject.getString("word");
+                            String kana = jsonObject.getString("kana");
+                            String definition = jsonObject.getString("definition");
+                            String example_sentence = jsonObject.getString("example_sentence");
 
-                        temp=temp+diff;
-                        publishProgress(temp);
+
+                            ContentValues values = new ContentValues();
+
+                            values.put(WordsContract.WordsEntry.COLUMN_WORD, word);
+                            values.put(WordsContract.WordsEntry.COLUMN_KANA, kana);
+                            values.put(WordsContract.WordsEntry.COLUMN_EXAMPLE_SENTENCE, definition);
+                            values.put(WordsContract.WordsEntry.COLUMN_DEFINITION, example_sentence);
+
+                            long newRowId = db.insert(noExFileName, null, values);
+                            temp=temp+diff;
+                            publishProgress(temp);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+
+
+//                    for (int i = 0; i<wordsList.size();i++){
+//                        ContentValues values = new ContentValues();
+//
+//                        values.put(WordsContract.WordsEntry.COLUMN_WORD, wordsList.get(i).getWord());
+//                        values.put(WordsContract.WordsEntry.COLUMN_KANA, wordsList.get(i).getKana());
+//                        values.put(WordsContract.WordsEntry.COLUMN_EXAMPLE_SENTENCE, wordsList.get(i).getExample_sentence());
+//                        values.put(WordsContract.WordsEntry.COLUMN_DEFINITION, wordsList.get(i).getDefinition());
+//
+//
+//                        long newRowId = db.insert(myPref.getDictName(), null, values);
+//
+//                        temp=temp+diff;
+//                        publishProgress(temp);
+//                    }
 
                     aBoolean= true;
 
@@ -175,6 +212,7 @@ public class FetchBookAndInsertTask extends AsyncTask<String,Float,Boolean> {
         progressDialog.setTitle("下载文件中");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(true);
+        progressDialog.setMax(10000);
 
         progressDialog.show();
     }

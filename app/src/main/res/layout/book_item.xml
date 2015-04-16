@@ -2,19 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:minHeight="?android:listPreferredItemHeightLarge"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/book_name"
-        android:text="书名"/>
+        android:text="书名"
+        android:textAppearance="?android:textAppearanceLarge"
+
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/book_words_count"
+        android:textAppearance="?android:textAppearanceSmall"
         />
 
 

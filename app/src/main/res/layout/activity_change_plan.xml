@@ -6,9 +6,10 @@
     >
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
+        android:padding="16dp"
+        android:layout_margin="16dp"
         android:text="选择单词书"
         android:id="@+id/pick_words_book_button"/>
 
@@ -16,27 +17,34 @@
     <TextView android:id="@+id/dateDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:textSize="16sp"
         android:text=""/>
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
+        android:padding="16dp"
+        android:layout_margin="16dp"
         android:text="选择完成日期"
         android:id="@+id/pick_deadline_button"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:visibility="gone"
         android:text="读取云端数据"
         android:id="@+id/read_fake_data"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
+        android:padding="16dp"
+        android:layout_margin="16dp"
         android:id="@+id/make_testing_dict"
         android:text="生成并选择测试词典"
 
