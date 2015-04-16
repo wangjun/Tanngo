@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.WordActivity"
             android:label="@string/title_activity_word"
-            android:parentActivityName="com.ezio.org.tanngo.ui.HomeActivity">
+            android:parentActivityName=".ui.HomeActivity" >
         </activity>
         <activity
             android:name=".ui.WordsBooksListActivity"
@@ -39,6 +39,10 @@
         <activity
             android:name=".ui.WordsBookDetailActivity"
             android:label="@string/title_activity_words_book_detail" >
+        </activity>
+        <activity
+            android:name=".ui.ProgressBarActivity"
+            android:label="@string/title_activity_progress_bar" >
         </activity>
     </application>
 

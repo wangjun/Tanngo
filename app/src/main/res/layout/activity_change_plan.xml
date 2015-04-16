@@ -50,6 +50,16 @@
 
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:id="@+id/show_progress_bar"
+        android:text="Progress Bar"
+
+        />
+
 
 
 

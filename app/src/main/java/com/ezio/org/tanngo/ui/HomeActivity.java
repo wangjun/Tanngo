@@ -138,9 +138,8 @@ public class HomeActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if (id == R.id.change_plan_menu_item){
+
+        if (id == R.id.change_plan_menu_item){
             Intent intent = new Intent(HomeActivity.this, ChangePlanActivity.class);
             startActivity(intent);
             return true;

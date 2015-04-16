@@ -34,6 +34,8 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
     private Button mReadFakeDataBTN;
     private TextView mDateDisplay;
 
+    private Button mShowProgressBar;
+
     public static final int DATE_DIALOG_ID = 0;
 
     private int mYear;
@@ -119,6 +121,7 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
         mReadFakeDataBTN = (Button)findViewById(R.id.read_fake_data);
 
         mDateDisplay = (TextView) findViewById(R.id.dateDisplay);
+        mShowProgressBar= (Button)findViewById(R.id.show_progress_bar);
     }
 
     @Override
@@ -127,6 +130,7 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
         mPickWordsBookBTN.setOnClickListener(this);
         mPickDeadlineBTN.setOnClickListener(this);
         mReadFakeDataBTN.setOnClickListener(this);
+        mShowProgressBar.setOnClickListener(this);
     }
 
     @Override
@@ -147,6 +151,7 @@ public class ChangePlanActivity extends BaseActivity implements View.OnClickList
             showDialog(DATE_DIALOG_ID);
         }else if(v ==mReadFakeDataBTN){
             readFakeData();
+
         }
     }
 

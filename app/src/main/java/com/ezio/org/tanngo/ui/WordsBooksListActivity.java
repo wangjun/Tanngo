@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ezio.org.tanngo.R;
@@ -29,11 +30,15 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
     TextView bookName;
     TextView bookWordsCount;
 
+    ProgressBar progressBar;
+
     public final static String BOOK_KEY="book_key";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
     }
@@ -65,6 +70,7 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
         queryBooks();
 
 
+
     }
 
     @Override
@@ -72,8 +78,12 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
 
         booksListView = (ListView)findViewById(R.id.books_list_view);
 
+
         bookName = (TextView)findViewById(R.id.book_name);
         bookWordsCount = (TextView)findViewById(R.id.book_words_count);
+
+        progressBar = (ProgressBar)findViewById(R.id.list_activity_progress_bar);
+
 
     }
 
@@ -84,23 +94,25 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
     }
 
     private void queryBooks(){
-        booksListView.setVisibility(View.VISIBLE);
+
         BmobQuery<WordsBook> query = new BmobQuery<WordsBook>();
         query.order("-createdAt");
-        query.findObjects(this,new FindListener<WordsBook>() {
+        query.findObjects(this, new FindListener<WordsBook>() {
             @Override
             public void onSuccess(List<WordsBook> wordsBooks) {
+                progressBar.setVisibility(View.GONE);
+                booksListView.setVisibility(View.VISIBLE);
                 BooksAdapter.clear();
-                Utility.ShowDebugLog("top","top");
-                if (wordsBooks ==null|| wordsBooks.size()==0){
+                Utility.ShowDebugLog("top", "top");
+                if (wordsBooks == null || wordsBooks.size() == 0) {
                     //showErrorView
                     BooksAdapter.notifyDataSetChanged();
                     Utility.ShowDebugLog("in if ", "in if");
                     return;
                 }
 
-                for (int j = 0; j< wordsBooks.size();j++){
-                    Utility.ShowDebugLog("success","success");
+                for (int j = 0; j < wordsBooks.size(); j++) {
+                    Utility.ShowDebugLog("success", "success");
                     Utility.ShowDebugLog("name", wordsBooks.get(j).getBookName());
                     Utility.ShowDebugLog("describe", wordsBooks.get(j).getBookName());
                 }
@@ -108,22 +120,25 @@ public class WordsBooksListActivity extends BaseActivity implements AdapterView.
                 BooksAdapter.addAll(wordsBooks);
                 booksListView.setAdapter(BooksAdapter);
 
-                for (int j = 0; j<BooksAdapter.getCount();j++){
-                    Utility.ShowDebugLog("adapter","adapter");
-                    Utility.ShowDebugLog("adapter--name",BooksAdapter.getItem(j).getBookName());
-                    Utility.ShowDebugLog("adapter--describe",BooksAdapter.getItem(j).getBookName());
+                for (int j = 0; j < BooksAdapter.getCount(); j++) {
+                    Utility.ShowDebugLog("adapter", "adapter");
+                    Utility.ShowDebugLog("adapter--name", BooksAdapter.getItem(j).getBookName());
+                    Utility.ShowDebugLog("adapter--describe", BooksAdapter.getItem(j).getBookName());
                 }
 
-                Utility.ShowDebugLog("end","end");
+                Utility.ShowDebugLog("end", "end");
+
             }
 
             @Override
             public void onError(int i, String s) {
 
-                Utility.ShowDebugLog("Error","Error");
+                Utility.ShowDebugLog("Error", "Error");
                 //show error
             }
         });
+
+
     }
 
 
