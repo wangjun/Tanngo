@@ -20,12 +20,14 @@ public abstract class BaseActivity extends Activity{
     protected MyPreference myPref;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //initial Bmob SDK
         Bmob.initialize(getApplicationContext(), BMOB_APP_ID);
+
         myPref = new MyPreference(getApplicationContext());
 
 
